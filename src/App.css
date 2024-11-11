@@ -5,20 +5,47 @@
   box-sizing: border-box;
 }
 
+#root {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+html,
 body {
+  height: 100%;
   margin: 0;
   padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+body {
   font-family: Arial, sans-serif;
   background-image: url("/assets/background-image.webp");
   background-size: cover;
   background-position: bottom center;
   background-attachment: fixed;
-  height: 100vh;
   overflow-x: hidden;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: auto;
 }
 
 /* Header */
 header {
+  flex-shrink: 0;
   display: flex;
   align-items: center;
   background-color: #ffcc80;
@@ -43,11 +70,14 @@ h1 {
 
 /* Main Game Layout */
 main .game-container {
+  flex: 1;
   position: relative;
   display: flex;
   justify-content: space-between;
   padding: 20px;
   width: 100%;
+  height: 100%;
+  box-sizing: border-box;
 }
 
 /* Sidebars */
@@ -55,6 +85,8 @@ main .game-container {
   padding: 20px;
   background-color: #ffe0b2;
   border-radius: 10px;
+  align-self: flex-start;
+  height: auto;
 }
 
 .sidebar h2 {
@@ -103,20 +135,20 @@ main .game-container {
 
 /* Center Area */
 .center-area {
-  width: 50%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   position: absolute;
   left: 50%;
-  bottom: -100%;
+  bottom: 10%;
   transform: translateX(-50%);
 }
 
 .cat-btn {
-  width: 200px;
-  height: 200px;
+  width: 250px;
+  height: 250px;
   background: none;
   border: none;
   padding: 0;
@@ -144,11 +176,12 @@ main .game-container {
 
 /* Footer */
 footer {
+  height: 60px;
+  flex-shrink: 0;
   width: 100%;
   background-color: #ffcc80;
   padding: 10px;
   text-align: center;
-  position: fixed;
   bottom: 0;
 }
 
@@ -254,9 +287,20 @@ label {
 }
 
 /* Responsive for Mobile */
+@media (max-width: 1400px) {
+  .center-area {
+    bottom: 5%;
+  }
+
+  .cat-btn {
+    width: 200px;
+    height: 200px;
+  }
+}
+
 @media (max-width: 1150px) {
   .center-area {
-    bottom: -120%;
+    bottom: 2%;
   }
 
   .cat-btn {
@@ -271,14 +315,9 @@ label {
     align-items: center;
   }
 
-  h1 {
-    margin-bottom: 10px;
-  }
-
   .stats {
     position: static;
     transform: none;
-    margin-top: 10px;
   }
 
   .game-container {
@@ -293,13 +332,33 @@ label {
   }
 
   .center-area {
-    width: 100%;
-    bottom: -100%;
-    margin-bottom: 30px;
+    position: relative;
+    top: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
   }
 
   .cat-btn {
     width: 150px;
     height: 150px;
+  }
+}
+
+@media (max-height: 815px) {
+  main {
+    transform: scale(0.8);
+    transform-origin: top center;
+  }
+
+  footer {
+    position: fixed;
+  }
+}
+
+@media (max-height: 700px) {
+  main {
+    transform: scale(0.7);
   }
 }
