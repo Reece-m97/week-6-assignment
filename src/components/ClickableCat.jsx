@@ -12,6 +12,9 @@ function ClickableCat({
 }) {
   const [isClicked, setIsClicked] = useState(false);
 
+  // Create an audio instance for the click sound
+  const clickAudio = new Audio(ClickSound);
+
   const handleCatClick = () => {
     setTreats(treats + 1);
     setTtc(ttc + 1);
@@ -25,10 +28,11 @@ function ClickableCat({
       setIsClicked(false);
     }, 200);
 
-    if (ClickSound.current) {
-      ClickSound.current.currentTime = 0; // Reset the audio time
-      ClickSound.current.play();
-    }
+    // Play the sound effect
+    clickAudio.currentTime = 0; // Reset the audio time
+    clickAudio.play().catch((error) => {
+      console.log("Audio playback failed: ", error);
+    });
   };
 
   return (

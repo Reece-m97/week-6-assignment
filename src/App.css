@@ -43,10 +43,10 @@ h1 {
 
 /* Main Game Layout */
 main .game-container {
+  position: relative;
   display: flex;
   justify-content: space-between;
   padding: 20px;
-  max-width: 1200px;
   width: 100%;
 }
 
@@ -108,17 +108,23 @@ main .game-container {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  position: absolute;
+  left: 50%;
+  bottom: -100%;
+  transform: translateX(-50%);
 }
 
 .cat-btn {
   width: 200px;
   height: 200px;
-  border-radius: 25%;
+  background: none;
+  border: none;
+  padding: 0;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  margin-bottom: 20px;
+  margin-bottom: 40px;
   transition: transform 0.2s ease;
 }
 
@@ -128,12 +134,12 @@ main .game-container {
 
 .cat-image {
   width: 100%;
-  border-radius: 25%;
   height: auto;
+  pointer-events: none;
 }
 
 .center-area p {
-  font-size: 1.2em;
+  font-size: 1.4em;
 }
 
 /* Footer */
@@ -248,19 +254,18 @@ label {
 }
 
 /* Responsive for Mobile */
-@media (max-width: 768px) {
-  .game-container {
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 50px;
-  }
-
-  .sidebar,
+@media (max-width: 1150px) {
   .center-area {
-    width: 100%;
-    margin-bottom: 20px;
+    bottom: -120%;
   }
 
+  .cat-btn {
+    width: 175px;
+    height: 175px;
+  }
+}
+
+@media (max-width: 768px) {
   header {
     flex-direction: column;
     align-items: center;
@@ -276,7 +281,25 @@ label {
     margin-top: 10px;
   }
 
-  footer .footer-content button {
-    margin: 10px;
+  .game-container {
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 50px;
+  }
+
+  .sidebar {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .center-area {
+    width: 100%;
+    bottom: -100%;
+    margin-bottom: 30px;
+  }
+
+  .cat-btn {
+    width: 150px;
+    height: 150px;
   }
 }
